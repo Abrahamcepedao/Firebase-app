@@ -1,17 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-native/native'
-import { createStackNavigation } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-const Stack = createStackNavigation()
+const Stack = createStackNavigator()
 
-function myStack(){
+import UsersLists from './screens/UsersList';
+import CreateUser from './screens/CreateUser';
+import UserDetail from './screens/UserDetail';
+
+function MyStack(){
   return (
     <Stack.Navigator>
-      <Stack.screen/>
-      <Stack.screen/>
-      <Stack.screen/>
+      <Stack.Screen name="CreateUser" component={CreateUser}/>
+      <Stack.Screen name="UsersList" component={UsersLists}/>
+      <Stack.Screen name="UserDetail" component={UserDetail}/>
     </Stack.Navigator>
   )
 }
@@ -19,7 +23,7 @@ function myStack(){
 export default function App() {
   return (
     <NavigationContainer>
-
+      <MyStack/>
     </NavigationContainer>
   );
 }
