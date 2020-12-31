@@ -3,7 +3,7 @@ import { View, Button, ScrollView } from 'react-native'
 import firebase from '../database/firebase'
 import { ListItem, Avatar } from 'react-native-elements'
 
-export default function UsersList() {
+export default function UsersList(props) {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -29,10 +29,16 @@ export default function UsersList() {
                 users.map((user) => {
                     return (
                         <ListItem
-                            key={user.id}
+                            key={user.id} bottomDivider onPress={() => props.navigation.navigate('UserDetail', {userId: user.id})}
                         >
                             <ListItem.Chevron/>
-                            <Avatar title="AC"/>
+                            <Avatar
+                                rounded
+                                source={{
+                                    uri:
+                                    'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                                }}
+                            />
                             <ListItem.Content>
                                 <ListItem.Title>{user.name}</ListItem.Title>
                                 <ListItem.Subtitle>{user.email}</ListItem.Subtitle>
